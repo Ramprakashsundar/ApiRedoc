@@ -1,1712 +1,823 @@
 {
-	"swagger": "2.0",
-	"info": {
-		"version": "v1",
-		"title": "TOGS.API.Vehicle",
-		"contact": {
-			"name": "Trimble Oil and Gas Inc.",
-			"url": "http://www.geotracinternational.com/",
-			"email": "support@geotracinternational.com"
-		},
- "description": "# Overview\n\n At Trimble Oil & Gas Services, you get so much more than a maximized ROI. You get everything that both you and your drivers need to make the journey as safe and efficient as possible. From customized GPS that maps all oil fields, to industry-leading safety products – we truly change the way you do business.\n\nTOGS Vehicle API 1.0 provides operations like:\n\n* **Navistar APIs** - OnCommand Connection (OCC) reduces downtime by providing near real time diagnostic evaluations. The Health Report generated from vehicles provides Navistar and dealers advanced notification for parts inventory management. It enables Navistar and dealers to proactively fulfill order parts at your preferred location based on likely needed repair prior to vehicle arrival.\n\n# Basepath URL\n\n**QA** - ```http://togsapigateway.geotracdemo.com/api```\n\n\n**Prod** - ```https://togsapigateway.gogeotrac.com/api```\n\n# Authorization\n\nThe service will be secured through API Auth Server. Thus requiring an\n'Authorization' header in all requests. The value of the header can be\neither picked up from APIAuthServer which will be an OAuth2 Bearer token. You have to send a valid\n```Access Token``` in the Authorization header, using the ```Bearer```\nauthentication scheme.\n\nFormat: ```Bearer <access_token>```\n"
-  },
- 	"paths": {
-		"/api/v1/VehiceIdentifiers/GetIdentifiers": {
-			"post": {
-				"tags": [
-					"VehiceIdentifiers"
-				],
-				"operationId": "GetVehicleIdentifiers",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/json",
-					"application/xml"
-				],
-				"parameters": [
-					{
-						"name": "request",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetAssetIdentifiersRequest"
-						}
-					},
-					{
-						"name": "customerIds",
-						"in": "header",
-						"required": false,
-						"type": "array",
-						"items": {
-							"type": "integer",
-							"format": "int32"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					},
-					{
-						"name": "customerSystemIds",
-						"in": "header",
-						"required": false,
-						"type": "array",
-						"items": {
-							"type": "string",
-							"format": "uuid"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/GetAssetIdentifiersResponse"
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/VehiceIdentifiers/GetIdentifier": {
-			"post": {
-				"tags": [
-					"VehiceIdentifiers"
-				],
-				"operationId": "GetVehicleIdentifier",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/json",
-					"application/xml"
-				],
-				"parameters": [
-					{
-						"name": "request",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetAssetIdentifierRequest"
-						}
-					},
-					{
-						"name": "customerSystemIds",
-						"in": "header",
-						"required": true,
-						"type": "array",
-						"items": {
-							"type": "string",
-							"format": "uuid"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/GetAssetIdentifierResponse"
-						}
-					},
-					"404": {
-						"description": "Not Found",
-						"schema": {
-							"type": "string"
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/VehicleDriver/GetVehicleThatDriverIsInOnDate": {
-			"post": {
-				"tags": [
-					"VehicleDriver"
-				],
-				"operationId": "GetVehicleThatDriverIsInOnDate",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/xml",
-					"application/json"
-				],
-				"parameters": [
-					{
-						"name": "request",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetVehicleWithDriverOnDateRequest"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/DriverInVehicle"
-						}
-					},
-					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"type": "string"
-						}
-					},
-					"404": {
-						"description": "Not Found",
-						"schema": {
-							"type": "string"
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/VehicleDriver/GetAllVehiclesDriverHasBeenInBetweenDates": {
-			"post": {
-				"tags": [
-					"VehicleDriver"
-				],
-				"operationId": "GetAllVehiclesDriverHasBeenInBetweenDates",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/xml",
-					"application/json"
-				],
-				"parameters": [
-					{
-						"name": "request",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetAllVehiclesDriverHasBeenInRequest"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/DriverInVehicle"
-						}
-					},
-					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"type": "string"
-						}
-					},
-					"404": {
-						"description": "Not Found",
-						"schema": {
-							"type": "string"
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/VehicleEquipment/GetVehicleThatEquipmentWasInstalledInOnDate": {
-			"post": {
-				"tags": [
-					"VehicleEquipment"
-				],
-				"operationId": "GetVehicleThatEquipmentWasInstalledInOnDate",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/xml",
-					"application/json"
-				],
-				"parameters": [
-					{
-						"name": "request",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetVehicleWithInstalledEquipmentRequest"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/EquipmentInVehicle"
-						}
-					},
-					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"type": "string"
-						}
-					},
-					"404": {
-						"description": "Not Found",
-						"schema": {
-							"type": "string"
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/VehicleIFTA/GetVehicleWorkHours": {
-			"post": {
-				"tags": [
-					"VehicleIFTA"
-				],
-				"operationId": "GetVehicleWorkHours",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/json",
-					"application/xml"
-				],
-				"parameters": [
-					{
-						"name": "req",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetVehicleWorkHoursRequest"
-						}
-					},
-					{
-						"name": "customerIds",
-						"in": "header",
-						"required": true,
-						"type": "array",
-						"items": {
-							"type": "integer",
-							"format": "int32"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/GetVehicleWorkHoursResponse"
-						}
-					}
-				}
-			}
-		},
-		"/api/VehicleInformation/GetVehicleInformation": {
-			"post": {
-				"tags": [
-					"VehicleInformation"
-				],
-				"operationId": "GetVehicleInformation",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"text/plain",
-					"application/json",
-					"text/json",
-					"application/xml",
-					"text/xml"
-				],
-				"parameters": [
-					{
-						"name": "req",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetVehicleInformationRequest"
-						}
-					},
-					{
-						"name": "customerIds",
-						"in": "header",
-						"required": true,
-						"type": "array",
-						"items": {
-							"type": "integer",
-							"format": "int32"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/GenericResponse[List[VehicleInformation]]"
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/VehicleLocation/GetHistoricalVehicleLocations": {
-			"post": {
-				"tags": [
-					"VehicleLocation"
-				],
-				"operationId": "GetHistoricalVehicleLocations",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/json",
-					"application/xml"
-				],
-				"parameters": [
-					{
-						"name": "req",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetHistoricalVehicleLocationsRequest"
-						}
-					},
-					{
-						"name": "customerIds",
-						"in": "header",
-						"required": true,
-						"type": "array",
-						"items": {
-							"type": "integer",
-							"format": "int32"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/GetHistoricalVehicleLocationsResponse"
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/VehicleLocation/GetLatestLocationRecord": {
-			"post": {
-				"tags": [
-					"VehicleLocation"
-				],
-				"operationId": "GetLatestLocationRecord",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/json",
-					"application/xml"
-				],
-				"parameters": [
-					{
-						"name": "req",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetLatestRecordRequest"
-						}
-					},
-					{
-						"name": "customerIds",
-						"in": "header",
-						"required": true,
-						"type": "array",
-						"items": {
-							"type": "integer",
-							"format": "int32"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/GetLatestRecordResponse"
-						}
-					}
-				}
-			}
-		},
-		"/api/VehicleOdometer/GetAssetOdometer": {
-			"post": {
-				"tags": [
-					"VehicleOdometer"
-				],
-				"operationId": "GetAssetOdometer",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/json",
-					"application/xml"
-				],
-				"parameters": [
-					{
-						"name": "request",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/GetVehicleOdometerRequest"
-						}
-					},
-					{
-						"name": "customerIds",
-						"in": "header",
-						"required": false,
-						"type": "array",
-						"items": {
-							"type": "integer",
-							"format": "int32"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					},
-					{
-						"name": "customerSystemIds",
-						"in": "header",
-						"required": false,
-						"type": "array",
-						"items": {
-							"type": "string",
-							"format": "uuid"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/GenericResponse[List[AssetOdometer]]"
-						}
-					}
-				}
-			}
-		},
-		"/api/VehicleReports/GetVehicleReports": {
-			"post": {
-				"tags": [
-					"VehicleReports"
-				],
-				"operationId": "GetVehicleReports",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/json",
-					"application/xml"
-				],
-				"parameters": [
-					{
-						"name": "request",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetVehicleReportsRequest"
-						}
-					},
-					{
-						"name": "customerIds",
-						"in": "header",
-						"required": true,
-						"type": "array",
-						"items": {
-							"type": "integer",
-							"format": "int32"
-						},
-						"collectionFormat": "multi",
-						"uniqueItems": false
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/GenericResponse[List[VehicleReportMessage]]"
-						}
-					}
-				}
-			}
-		},
-		"/api/VehicleReports/PushVehicleReport": {
-			"post": {
-				"tags": [
-					"VehicleReports"
-				],
-				"operationId": "PushVehicleReport",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/json",
-					"application/xml"
-				],
-				"parameters": [
-					{
-						"name": "vehicleTelemetryRequest",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/VehicleInformationRequest"
-						}
-					},
-					{
-						"name": "customerSystemIds",
-						"in": "header",
-						"required": false,
-						"type": "array",
-						"items": {
-							"type": "string",
-							"format": "uuid"
-						},
-						"collectionFormat": "multi",
-						"minLength": 1,
-						"uniqueItems": false
-					},
-					{
-						"name": "assetSystemId",
-						"in": "header",
-						"required": true,
-						"type": "string",
-						"format": "uuid"
-					},
-					{
-						"name": "msgId",
-						"in": "header",
-						"required": true,
-						"type": "integer",
-						"format": "int64"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/PushVehicleReportResponse"
-						}
-					},
-					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/ProblemDetails"
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/VehicleTimeZone/GetVehicleTimeZone": {
-			"post": {
-				"tags": [
-					"VehicleTimeZone"
-				],
-				"operationId": "GetVehicleTimeZoneByMdtSn",
-				"consumes": [
-					"application/json-patch+json",
-					"application/json",
-					"text/json",
-					"application/*+json",
-					"application/xml",
-					"text/xml",
-					"application/*+xml",
-					"application/xml",
-					"text/xml",
-					"application/*+xml"
-				],
-				"produces": [
-					"application/xml",
-					"application/json"
-				],
-				"parameters": [
-					{
-						"name": "request",
-						"in": "body",
-						"required": false,
-						"schema": {
-							"$ref": "#/definitions/GetVehicleTimeZoneRequest"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/VehicleTimeZone"
-						}
-					},
-					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"type": "string"
-						}
-					},
-					"404": {
-						"description": "Not Found",
-						"schema": {
-							"type": "string"
-						}
-					}
-				}
-			}
-		}
-	},
-	"definitions": {
-		"GetAssetIdentifiersRequest": {
-			"type": "object",
-			"properties": {
-				"AssetGroupSystemIds": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"format": "uuid",
-						"type": "string"
-					}
-				},
-				"CustomGroupSystemIds": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"format": "uuid",
-						"type": "string"
-					}
-				},
-				"AssetUnitNumbers": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				},
-				"VIN": {
-					"type": "string"
-				},
-				"VINSearchType": {
-					"enum": [
-						"BeginsWith",
-						"EndsWith",
-						"Contains",
-						"Exact"
-					],
-					"type": "string"
-				}
-			}
-		},
-		"GetAssetIdentifiersResponse": {
-			"type": "object",
-			"properties": {
-				"AssetIdentifiers": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/AssetIdentifier"
-					}
-				},
-				"SystemMessages": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"AssetIdentifier": {
-			"type": "object",
-			"properties": {
-				"AssetId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"AssetUnitNumber": {
-					"type": "string"
-				},
-				"LicensePlate": {
-					"type": "string"
-				},
-				"VIN": {
-					"type": "string"
-				},
-				"Description": {
-					"type": "string"
-				},
-				"CustomerId": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"ModemSn": {
-					"type": "string"
-				},
-				"Make": {
-					"type": "string"
-				},
-				"Model": {
-					"type": "string"
-				},
-				"Year": {
-					"type": "string"
-				},
-				"AssetCategory": {
-					"type": "string"
-				}
-			}
-		},
-		"GetAssetIdentifierRequest": {
-			"type": "object",
-			"properties": {
-				"AssetSystemId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"AssetUnitNumber": {
-					"type": "string"
-				}
-			}
-		},
-		"GetAssetIdentifierResponse": {
-			"type": "object",
-			"properties": {
-				"AssetIdentifier": {
-					"$ref": "#/definitions/AssetIdentifier"
-				},
-				"SystemMessages": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"GetVehicleWithDriverOnDateRequest": {
-			"type": "object",
-			"properties": {
-				"DriverSystemId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"Date": {
-					"format": "date-time",
-					"type": "string"
-				}
-			}
-		},
-		"DriverInVehicle": {
-			"type": "object",
-			"properties": {
-				"DriverSystemId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"DriverRoleTypeInVehicle": {
-					"type": "string"
-				},
-				"Asset": {
-					"$ref": "#/definitions/AssetIdentifier"
-				},
-				"DriverEventState": {
-					"type": "string"
-				},
-				"StartDate": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"EndDate": {
-					"format": "date-time",
-					"type": "string"
-				}
-			}
-		},
-		"GetAllVehiclesDriverHasBeenInRequest": {
-			"type": "object",
-			"properties": {
-				"DriverSystemId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"StartDate": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"EndDate": {
-					"format": "date-time",
-					"type": "string"
-				}
-			}
-		},
-		"GetVehicleWithInstalledEquipmentRequest": {
-			"type": "object",
-			"properties": {
-				"EquipmentSerialNumber": {
-					"type": "string"
-				},
-				"Date": {
-					"format": "date-time",
-					"type": "string"
-				}
-			}
-		},
-		"EquipmentInVehicle": {
-			"type": "object",
-			"properties": {
-				"EquipmentSerialNumber": {
-					"type": "string"
-				},
-				"Asset": {
-					"$ref": "#/definitions/AssetIdentifier"
-				},
-				"InstalledDate": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"UninstalledDate": {
-					"format": "date-time",
-					"type": "string"
-				}
-			}
-		},
-		"GetVehicleWorkHoursRequest": {
-			"type": "object",
-			"properties": {
-				"AssetIds": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"format": "uuid",
-						"type": "string"
-					}
-				},
-				"StartDateUTC": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"EndDateUTC": {
-					"format": "date-time",
-					"type": "string"
-				}
-			}
-		},
-		"GetVehicleWorkHoursResponse": {
-			"type": "object",
-			"properties": {
-				"AssetIFTAs": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/AssetIFTA"
-					}
-				},
-				"SystemMessages": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"AssetIFTA": {
-			"type": "object",
-			"properties": {
-				"CustomerID": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"DistanceDateUTC": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"IFTAProvinceState": {
-					"type": "string"
-				},
-				"DistanceTraveledKM": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"StartOdometerKM": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"EndOdometerKM": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"AssetID": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"AssetUnitNumber": {
-					"type": "string"
-				}
-			}
-		},
-		"GetVehicleInformationRequest": {
-			"type": "object",
-			"properties": {
-				"AssetUnitNumbers": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				},
-				"AssetIds": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"format": "uuid",
-						"type": "string"
-					}
-				}
-			}
-		},
-		"GenericResponse[List[VehicleInformation]]": {
-			"type": "object",
-			"properties": {
-				"Payload": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/VehicleInformation"
-					}
-				},
-				"ErrorMessages": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"VehicleInformation": {
-			"type": "object",
-			"properties": {
-				"AssetUnitNumber": {
-					"type": "string"
-				},
-				"AssetId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"LicencePlate": {
-					"type": "string"
-				},
-				"Make": {
-					"type": "string"
-				},
-				"Model": {
-					"type": "string"
-				},
-				"Year": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"EngineType": {
-					"type": "string"
-				},
-				"GroupName": {
-					"type": "string"
-				},
-				"GroupCode": {
-					"type": "string"
-				},
-				"AssetName": {
-					"type": "string"
-				},
-				"Organization": {
-					"type": "string"
-				},
-				"CustomerSystemId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"VIN": {
-					"type": "string"
-				},
-				"SerialNumber": {
-					"type": "string"
-				}
-			}
-		},
-		"GetHistoricalVehicleLocationsRequest": {
-			"required": [
-				"FromDateUTC"
-			],
-			"type": "object",
-			"properties": {
-				"AssetUnitNumber": {
-					"type": "string"
-				},
-				"Page": {
-					"format": "int32",
-					"default": 0,
-					"type": "integer"
-				},
-				"Take": {
-					"format": "int32",
-					"default": 100,
-					"maximum": 1000.0,
-					"minimum": 0.0,
-					"type": "integer"
-				},
-				"FromDateUTC": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"ToDateUTC": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"AssetId": {
-					"format": "uuid",
-					"type": "string"
-				}
-			}
-		},
-		"GetHistoricalVehicleLocationsResponse": {
-			"type": "object",
-			"properties": {
-				"HistoricalGeolocations": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/HistoricalGeolocation"
-					}
-				},
-				"PagingInformation": {
-					"$ref": "#/definitions/PagingInformation"
-				},
-				"SystemMessages": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"HistoricalGeolocation": {
-			"type": "object",
-			"properties": {
-				"AssetID": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"AssetUnitNumber": {
-					"type": "string"
-				},
-				"Latitude": {
-					"format": "double",
-					"type": "number"
-				},
-				"Longitude": {
-					"format": "double",
-					"type": "number"
-				},
-				"MessageDateTimeUTC": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"CustomerID": {
-					"format": "int32",
-					"type": "integer"
-				}
-			}
-		},
-		"PagingInformation": {
-			"type": "object",
-			"properties": {
-				"Page": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"PageSize": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"PageCount": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"TotalRecordCount": {
-					"format": "int32",
-					"type": "integer"
-				}
-			}
-		},
-		"GetLatestRecordRequest": {
-			"type": "object",
-			"properties": {
-				"AssetUnitNumber": {
-					"type": "string"
-				},
-				"GroupName": {
-					"type": "string"
-				},
-				"Page": {
-					"format": "int32",
-					"default": 0,
-					"type": "integer"
-				},
-				"Take": {
-					"format": "int32",
-					"default": 100,
-					"maximum": 1000.0,
-					"minimum": 0.0,
-					"type": "integer"
-				}
-			}
-		},
-		"GetLatestRecordResponse": {
-			"type": "object",
-			"properties": {
-				"LatestRecords": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/LatestRecord"
-					}
-				},
-				"PagingInformation": {
-					"$ref": "#/definitions/PagingInformation"
-				},
-				"SystemMessages": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"LatestRecord": {
-			"type": "object",
-			"properties": {
-				"assetun": {
-					"type": "string"
-				},
-				"msgtime": {
-					"type": "string"
-				},
-				"modemsn": {
-					"type": "string"
-				},
-				"latitude": {
-					"type": "string"
-				},
-				"longitude": {
-					"type": "string"
-				},
-				"speed": {
-					"type": "string"
-				},
-				"lsd": {
-					"type": "string"
-				},
-				"groupname": {
-					"type": "string"
-				},
-				"heading": {
-					"type": "string"
-				},
-				"reason": {
-					"type": "string"
-				}
-			}
-		},
-		"GetVehicleOdometerRequest": {
-			"type": "object",
-			"properties": {
-				"AssetSystemIds": {
-					"maxLength": 20,
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"format": "uuid",
-						"type": "string"
-					}
-				},
-				"AssetUnitNumbers": {
-					"maxLength": 20,
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"GenericResponse[List[AssetOdometer]]": {
-			"type": "object",
-			"properties": {
-				"Payload": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/AssetOdometer"
-					}
-				},
-				"ErrorMessages": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"AssetOdometer": {
-			"type": "object",
-			"properties": {
-				"AssetSystemId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"AssetUnitNumber": {
-					"type": "string"
-				},
-				"LicensePlate": {
-					"type": "string"
-				},
-				"VinNumber": {
-					"type": "string"
-				},
-				"ModemSerialNumber": {
-					"type": "string"
-				},
-				"Odometer": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"LastReadingDate": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"UseECMOdometer": {
-					"type": "boolean"
-				}
-			}
-		},
-		"GetVehicleReportsRequest": {
-			"type": "object",
-			"properties": {
-				"begintimestamp": {
-					"format": "ISO8601 message time(2017-01-01T13:00:18Z)",
-					"type": "string"
-				},
-				"endtimestamp": {
-					"format": "ISO8601 message time(2017-01-01T13:00:18Z)",
-					"type": "string"
-				},
-				"AssetSystemIds": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"format": "uuid",
-						"type": "string"
-					}
-				}
-			}
-		},
-		"GenericResponse[List[VehicleReportMessage]]": {
-			"type": "object",
-			"properties": {
-				"Payload": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/VehicleReportMessage"
-					}
-				},
-				"ErrorMessages": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"VehicleReportMessage": {
-			"type": "object",
-			"properties": {
-				"CustomerId": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"VIN": {
-					"type": "string"
-				},
-				"UnitNumber": {
-					"type": "string"
-				},
-				"LicensePlate": {
-					"type": "string"
-				},
-				"ModemSn": {
-					"type": "string"
-				},
-				"MsgTime": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"CustomerSystemId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"AssetSystemId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"TelemetryList": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/TelemetricAttribute"
-					}
-				},
-				"DtcInformationList": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/DtcInformation"
-					}
-				},
-				"UnknownMsgPayload": {
-					"type": "string"
-				},
-				"MsgId": {
-					"format": "int64",
-					"type": "integer"
-				},
-				"Latitude": {
-					"format": "double",
-					"type": "number"
-				},
-				"Longitude": {
-					"format": "double",
-					"type": "number"
-				},
-				"Type": {
-					"enum": [
-						"DTC",
-						"ECM"
-					],
-					"type": "string"
-				}
-			}
-		},
-		"TelemetricAttribute": {
-			"type": "object",
-			"properties": {
-				"ECMType": {
-					"type": "string"
-				},
-				"Value": {
-					"type": "string"
-				},
-				"CreatedAt": {
-					"format": "date-time",
-					"type": "string"
-				}
-			}
-		},
-		"DtcInformation": {
-			"type": "object",
-			"properties": {
-				"Protocol": {
-					"type": "string"
-				},
-				"DTC": {
-					"type": "string"
-				},
-				"SourceAddress": {
-					"type": "string"
-				},
-				"FMI": {
-					"type": "string"
-				},
-				"IsActive": {
-					"type": "boolean"
-				},
-				"Occurrence_Count": {
-					"type": "string"
-				},
-				"LampStatus": {
-					"type": "string"
-				},
-				"LampBlinkRate": {
-					"type": "string"
-				},
-				"CreatedAt": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"SPN": {
-					"type": "string"
-				},
-				"PID": {
-					"type": "string"
-				},
-				"SA": {
-					"type": "string"
-				},
-				"MID": {
-					"type": "string"
-				},
-				"Number_Of_DTC_Reported": {
-					"type": "string"
-				},
-				"Fault_Active": {
-					"type": "boolean"
-				}
-			}
-		},
-		"VehicleInformationRequest": {
-			"required": [
-				"MsdId",
-				"MsgTime",
-				"MessagePayload",
-				"Type"
-			],
-			"type": "object",
-			"properties": {
-				"MsdId": {
-					"format": "int64",
-					"type": "integer"
-				},
-				"MsgTime": {
-					"format": "date-time",
-					"type": "string"
-				},
-				"MessagePayload": {
-					"type": "string"
-				},
-				"Type": {
-					"enum": [
-						"DTC",
-						"ECM"
-					],
-					"type": "string"
-				},
-				"Latitude": {
-					"format": "double",
-					"type": "number"
-				},
-				"Longitude": {
-					"format": "double",
-					"type": "number"
-				}
-			}
-		},
-		"PushVehicleReportResponse": {
-			"type": "object",
-			"properties": {
-				"IsPayloadSaved": {
-					"type": "boolean"
-				},
-				"SystemMessages": {
-					"uniqueItems": false,
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		},
-		"ProblemDetails": {
-			"type": "object",
-			"properties": {
-				"type": {
-					"type": "string"
-				},
-				"title": {
-					"type": "string"
-				},
-				"status": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"detail": {
-					"type": "string"
-				},
-				"instance": {
-					"type": "string"
-				}
-			},
-			"additionalProperties": {
-				"type": "object"
-			}
-		},
-		"GetVehicleTimeZoneRequest": {
-			"type": "object",
-			"properties": {
-				"MdtSn": {
-					"type": "string"
-				}
-			}
-		},
-		"VehicleTimeZone": {
-			"type": "object",
-			"properties": {
-				"CustomerId": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"CustomerSystemId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"Unit": {
-					"type": "string"
-				},
-				"AssetId": {
-					"format": "uuid",
-					"type": "string"
-				},
-				"ModemSn": {
-					"type": "string"
-				},
-				"GroupId": {
-					"format": "int32",
-					"type": "integer"
-				},
-				"GroupName": {
-					"type": "string"
-				},
-				"TimeZone": {
-					"type": "string"
-				},
-				"TimeZoneDiff": {
-					"format": "double",
-					"type": "number"
-				},
-				"TimeZoneAbbrev": {
-					"type": "string"
-				},
-				"ObservesDst": {
-					"type": "boolean"
-				}
-			}
-		}
-	}
+   "swagger":"2.0",
+   "info":{
+      "version":"v1",
+      "title":"TOGS.API.Vehicle",
+      "contact":{
+         "name":"Trimble Oil and Gas Inc.",
+         "url":"http://www.geotracinternational.com/",
+         "email":"support@geotracinternational.com"
+      },
+      "description":"# Overview\n\n At Trimble Oil & Gas Services, you get so much more than a maximized ROI. You get everything that both you and your drivers need to make the journey as safe and efficient as possible. From customized GPS that maps all oil fields, to industry-leading safety products – we truly change the way you do business.\n\nTOGS Vehicle API 1.0 provides operations like:\n\n* **Navistar APIs** - OnCommand Connection (OCC) reduces downtime by providing near real time diagnostic evaluations. The Health Report generated from vehicles provides Navistar and dealers advanced notification for parts inventory management. It enables Navistar and dealers to proactively fulfill order parts at your preferred location based on likely needed repair prior to vehicle arrival.\n\n# Basepath URL\n\n**qa** - ```http://togsapigateway.geotracdemo.com/api```\n\n\n**Prod** - ```https://togsapigateway.gogeotrac.com/api```\n\n# Authorization\n\nThe service will be secured through API Auth Server. Thus requiring an\n'Authorization' header in all requests. The value of the header can be\neither picked up from APIAuthServer which will be an OAuth2 Bearer token. You have to send a valid\n```Access Token``` in the Authorization header, using the ```Bearer```\nauthentication scheme.\n\nFormat: ```Bearer <access_token>```\n"
+   },
+   "paths":{
+       "/api/VehicleReports/GetVehicleReports":{
+         "post":{
+            "tags":[
+               "VehicleReports"
+            ],
+            "operationId":"GetVehicleReports",
+            "consumes":[
+               "application/json-patch+json",
+               "application/json",
+               "text/json",
+               "application/*+json",
+               "application/xml",
+               "text/xml",
+               "application/*+xml",
+               "application/xml",
+               "text/xml",
+               "application/*+xml"
+            ],
+            "produces":[
+               "application/json",
+               "application/xml"
+            ],
+            "parameters":[
+               {
+                  "name":"request",
+                  "in":"body",
+                  "required":false,
+                  "schema":{
+                     "$ref":"#/definitions/GetVehicleReportsRequest"
+                  }
+               },
+               {
+                  "name":"customerIds",
+                  "in":"header",
+                  "required":true,
+                  "type":"array",
+                  "items":{
+                     "type":"integer",
+                     "format":"int32"
+                  },
+                  "collectionFormat":"multi",
+                  "uniqueItems":false
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Success",
+                  "schema":{
+                     "$ref":"#/definitions/GenericResponse[List[VehicleReportMessage]]"
+                  }
+               }
+            }
+         }
+      },
+      "/api/VehicleReports/PushVehicleReport":{
+         "post":{
+            "tags":[
+               "VehicleReports"
+            ],
+            "operationId":"PushVehicleReport",
+            "consumes":[
+               "application/json-patch+json",
+               "application/json",
+               "text/json",
+               "application/*+json",
+               "application/xml",
+               "text/xml",
+               "application/*+xml",
+               "application/xml",
+               "text/xml",
+               "application/*+xml"
+            ],
+            "produces":[
+               "application/json",
+               "application/xml"
+            ],
+            "parameters":[
+               {
+                  "name":"vehicleTelemetryRequest",
+                  "in":"body",
+                  "required":false,
+                  "schema":{
+                     "$ref":"#/definitions/VehicleInformationRequest"
+                  }
+               },
+               {
+                  "name":"customerSystemIds",
+                  "in":"header",
+                  "required":false,
+                  "type":"array",
+                  "items":{
+                     "type":"string",
+                     "format":"uuid"
+                  },
+                  "collectionFormat":"multi",
+                  "minLength":1,
+                  "uniqueItems":false
+               },
+               {
+                  "name":"assetSystemId",
+                  "in":"header",
+                  "required":true,
+                  "type":"string",
+                  "format":"uuid"
+               },
+               {
+                  "name":"msgId",
+                  "in":"header",
+                  "required":true,
+                  "type":"integer",
+                  "format":"int64"
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Success",
+                  "schema":{
+                     "$ref":"#/definitions/PushVehicleReportResponse"
+                  }
+               },
+               "400":{
+                  "description":"Bad Request",
+                  "schema":{
+                     "$ref":"#/definitions/ProblemDetails"
+                  }
+               }
+            }
+         }
+      },
+      "/api/VehicleInformation/GetVehicleInformation":{
+         "post":{
+            "tags":[
+               "VehicleInformation"
+            ],
+            "operationId":"GetVehicleInformation",
+            "consumes":[
+               "application/json-patch+json",
+               "application/json",
+               "text/json",
+               "application/*+json",
+               "application/xml",
+               "text/xml",
+               "application/*+xml",
+               "application/xml",
+               "text/xml",
+               "application/*+xml"
+            ],
+            "produces":[
+               "text/plain",
+               "application/json",
+               "text/json",
+               "application/xml",
+               "text/xml"
+            ],
+            "parameters":[
+               {
+                  "name":"req",
+                  "in":"body",
+                  "required":false,
+                  "schema":{
+                     "$ref":"#/definitions/GetVehicleInformationRequest"
+                  }
+               },
+               {
+                  "name":"customerIds",
+                  "in":"header",
+                  "required":true,
+                  "type":"array",
+                  "items":{
+                     "type":"integer",
+                     "format":"int32"
+                  },
+                  "collectionFormat":"multi",
+                  "uniqueItems":false
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Success",
+                  "schema":{
+                     "$ref":"#/definitions/GenericResponse[List[VehicleInformation]]"
+                  }
+               }
+            }
+         }
+      },
+      "/api/VehicleOdometer/GetAssetOdometer":{
+         "post":{
+            "tags":[
+               "VehicleOdometer"
+            ],
+            "operationId":"GetAssetOdometer",
+            "consumes":[
+               "application/json-patch+json",
+               "application/json",
+               "text/json",
+               "application/*+json",
+               "application/xml",
+               "text/xml",
+               "application/*+xml",
+               "application/xml",
+               "text/xml",
+               "application/*+xml"
+            ],
+            "produces":[
+               "application/json",
+               "application/xml"
+            ],
+            "parameters":[
+               {
+                  "name":"request",
+                  "in":"body",
+                  "required":true,
+                  "schema":{
+                     "$ref":"#/definitions/GetVehicleOdometerRequest"
+                  }
+               },
+               {
+                  "name":"customerIds",
+                  "in":"header",
+                  "required":false,
+                  "type":"array",
+                  "items":{
+                     "type":"integer",
+                     "format":"int32"
+                  },
+                  "collectionFormat":"multi",
+                  "uniqueItems":false
+               },
+               {
+                  "name":"customerSystemIds",
+                  "in":"header",
+                  "required":false,
+                  "type":"array",
+                  "items":{
+                     "type":"string",
+                     "format":"uuid"
+                  },
+                  "collectionFormat":"multi",
+                  "uniqueItems":false
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Success",
+                  "schema":{
+                     "$ref":"#/definitions/GenericResponse[List[AssetOdometer]]"
+                  }
+               }
+            }
+         }
+      },
+       "/api/v1/VehiceIdentifiers/GetIdentifiers":{
+         "post":{
+            "tags":[
+               "VehiceIdentifiers"
+            ],
+            "operationId":"GetVehicleIdentifiers",
+            "consumes":[
+               "application/json-patch+json",
+               "application/json",
+               "text/json",
+               "application/*+json",
+               "application/xml",
+               "text/xml",
+               "application/*+xml",
+               "application/xml",
+               "text/xml",
+               "application/*+xml"
+            ],
+            "produces":[
+               "application/json",
+               "application/xml"
+            ],
+            "parameters":[
+               {
+                  "name":"request",
+                  "in":"body",
+                  "required":false,
+                  "schema":{
+                     "$ref":"#/definitions/GetAssetIdentifiersRequest"
+                  }
+               },
+               {
+                  "name":"customerIds",
+                  "in":"header",
+                  "required":false,
+                  "type":"array",
+                  "items":{
+                     "type":"integer",
+                     "format":"int32"
+                  },
+                  "collectionFormat":"multi",
+                  "uniqueItems":false
+               },
+               {
+                  "name":"customerSystemIds",
+                  "in":"header",
+                  "required":false,
+                  "type":"array",
+                  "items":{
+                     "type":"string",
+                     "format":"uuid"
+                  },
+                  "collectionFormat":"multi",
+                  "uniqueItems":false
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Success",
+                  "schema":{
+                     "$ref":"#/definitions/GetAssetIdentifiersResponse"
+                  }
+               }
+            }
+         }
+      }
+   },
+   "definitions":{
+      "GetAssetIdentifiersRequest":{
+         "type":"object",
+         "properties":{
+            "AssetGroupSystemIds":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "format":"uuid",
+                  "type":"string"
+               }
+            },
+            "CustomGroupSystemIds":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "format":"uuid",
+                  "type":"string"
+               }
+            },
+            "AssetUnitNumbers":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "type":"string"
+               }
+            },
+            "VIN":{
+               "type":"string"
+            },
+            "VINSearchType":{
+               "enum":[
+                  "BeginsWith",
+                  "EndsWith",
+                  "Contains",
+                  "Exact"
+               ],
+               "type":"string"
+            }
+         }
+      },
+      "GetAssetIdentifiersResponse":{
+         "type":"object",
+         "properties":{
+            "AssetIdentifiers":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "$ref":"#/definitions/AssetIdentifier"
+               }
+            },
+            "SystemMessages":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "type":"string"
+               }
+            }
+         }
+      },
+      "AssetIdentifier":{
+         "type":"object",
+         "properties":{
+            "AssetId":{
+               "format":"uuid",
+               "type":"string"
+            },
+            "AssetUnitNumber":{
+               "type":"string"
+            },
+            "LicensePlate":{
+               "type":"string"
+            },
+            "VIN":{
+               "type":"string"
+            },
+            "Description":{
+               "type":"string"
+            },
+            "CustomerId":{
+               "format":"int32",
+               "type":"integer"
+            },
+            "ModemSn":{
+               "type":"string"
+            },
+            "Make":{
+               "type":"string"
+            },
+            "Model":{
+               "type":"string"
+            },
+            "Year":{
+               "type":"string"
+            },
+            "AssetCategory":{
+               "type":"string"
+            }
+         }
+      },
+      "GetVehicleInformationRequest":{
+         "type":"object",
+         "properties":{
+            "AssetUnitNumbers":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "type":"string"
+               }
+            },
+            "AssetIds":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "format":"uuid",
+                  "type":"string"
+               }
+            }
+         }
+      },
+      "GenericResponse[List[VehicleInformation]]":{
+         "type":"object",
+         "properties":{
+            "Payload":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "$ref":"#/definitions/VehicleInformation"
+               }
+            },
+            "ErrorMessages":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "type":"string"
+               }
+            }
+         }
+      },
+      "VehicleInformation":{
+         "type":"object",
+         "properties":{
+            "AssetUnitNumber":{
+               "type":"string"
+            },
+            "AssetId":{
+               "format":"uuid",
+               "type":"string"
+            },
+            "LicencePlate":{
+               "type":"string"
+            },
+            "Make":{
+               "type":"string"
+            },
+            "Model":{
+               "type":"string"
+            },
+            "Year":{
+               "format":"int32",
+               "type":"integer"
+            },
+            "EngineType":{
+               "type":"string"
+            },
+            "GroupName":{
+               "type":"string"
+            },
+            "GroupCode":{
+               "type":"string"
+            },
+            "AssetName":{
+               "type":"string"
+            },
+            "Organization":{
+               "type":"string"
+            },
+            "CustomerSystemId":{
+               "format":"uuid",
+               "type":"string"
+            },
+            "VIN":{
+               "type":"string"
+            },
+            "SerialNumber":{
+               "type":"string"
+            }
+         }
+      },
+      "GetVehicleOdometerRequest":{
+         "type":"object",
+         "properties":{
+            "AssetSystemIds":{
+               "maxLength":20,
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "format":"uuid",
+                  "type":"string"
+               }
+            },
+            "AssetUnitNumbers":{
+               "maxLength":20,
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "type":"string"
+               }
+            }
+         }
+      },
+      "GenericResponse[List[AssetOdometer]]":{
+         "type":"object",
+         "properties":{
+            "Payload":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "$ref":"#/definitions/AssetOdometer"
+               }
+            },
+            "ErrorMessages":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "type":"string"
+               }
+            }
+         }
+      },
+      "AssetOdometer":{
+         "type":"object",
+         "properties":{
+            "AssetSystemId":{
+               "format":"uuid",
+               "type":"string"
+            },
+            "AssetUnitNumber":{
+               "type":"string"
+            },
+            "LicensePlate":{
+               "type":"string"
+            },
+            "VinNumber":{
+               "type":"string"
+            },
+            "ModemSerialNumber":{
+               "type":"string"
+            },
+            "Odometer":{
+               "format":"int32",
+               "type":"integer"
+            },
+            "LastReadingDate":{
+               "format":"date-time",
+               "type":"string"
+            },
+            "UseECMOdometer":{
+               "type":"boolean"
+            }
+         }
+      },
+      "GetVehicleReportsRequest":{
+         "type":"object",
+         "properties":{
+            "begintimestamp":{
+               "format":"ISO8601 message time(2017-01-01T13:00:18Z)",
+               "type":"string"
+            },
+            "endtimestamp":{
+               "format":"ISO8601 message time(2017-01-01T13:00:18Z)",
+               "type":"string"
+            },
+            "AssetSystemIds":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "format":"uuid",
+                  "type":"string"
+               }
+            }
+         }
+      },
+      "GenericResponse[List[VehicleReportMessage]]":{
+         "type":"object",
+         "properties":{
+            "Payload":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "$ref":"#/definitions/VehicleReportMessage"
+               }
+            },
+            "ErrorMessages":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "type":"string"
+               }
+            }
+         }
+      },
+      "VehicleReportMessage":{
+         "type":"object",
+         "properties":{
+            "CustomerId":{
+               "format":"int32",
+               "type":"integer"
+            },
+            "VIN":{
+               "type":"string"
+            },
+            "UnitNumber":{
+               "type":"string"
+            },
+            "LicensePlate":{
+               "type":"string"
+            },
+            "ModemSn":{
+               "type":"string"
+            },
+            "MsgTime":{
+               "format":"date-time",
+               "type":"string"
+            },
+            "CustomerSystemId":{
+               "format":"uuid",
+               "type":"string"
+            },
+            "AssetSystemId":{
+               "format":"uuid",
+               "type":"string"
+            },
+            "TelemetryList":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "$ref":"#/definitions/TelemetricAttribute"
+               }
+            },
+            "DtcInformationList":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "$ref":"#/definitions/DtcInformation"
+               }
+            },
+            "UnknownMsgPayload":{
+               "type":"string"
+            },
+            "MsgId":{
+               "format":"int64",
+               "type":"integer"
+            },
+            "Latitude":{
+               "format":"double",
+               "type":"number"
+            },
+            "Longitude":{
+               "format":"double",
+               "type":"number"
+            },
+            "Type":{
+               "enum":[
+                  "DTC",
+                  "ECM"
+               ],
+               "type":"string"
+            }
+         }
+      },
+      "TelemetricAttribute":{
+         "type":"object",
+         "properties":{
+            "ECMType":{
+               "type":"string"
+            },
+            "Value":{
+               "type":"string"
+            },
+            "CreatedAt":{
+               "format":"date-time",
+               "type":"string"
+            }
+         }
+      },
+      "DtcInformation":{
+         "type":"object",
+         "properties":{
+            "Protocol":{
+               "type":"string"
+            },
+            "DTC":{
+               "type":"string"
+            },
+            "SourceAddress":{
+               "type":"string"
+            },
+            "FMI":{
+               "type":"string"
+            },
+            "IsActive":{
+               "type":"boolean"
+            },
+            "Occurrence_Count":{
+               "type":"string"
+            },
+            "LampStatus":{
+               "type":"string"
+            },
+            "LampBlinkRate":{
+               "type":"string"
+            },
+            "CreatedAt":{
+               "format":"date-time",
+               "type":"string"
+            },
+            "SPN":{
+               "type":"string"
+            },
+            "PID":{
+               "type":"string"
+            },
+            "SA":{
+               "type":"string"
+            },
+            "MID":{
+               "type":"string"
+            },
+            "Number_Of_DTC_Reported":{
+               "type":"string"
+            },
+            "Fault_Active":{
+               "type":"boolean"
+            }
+         }
+      },
+      "VehicleInformationRequest":{
+         "required":[
+            "MsdId",
+            "MsgTime",
+            "MessagePayload",
+            "Type"
+         ],
+         "type":"object",
+         "properties":{
+            "MsdId":{
+               "format":"int64",
+               "type":"integer"
+            },
+            "MsgTime":{
+               "format":"date-time",
+               "type":"string"
+            },
+            "MessagePayload":{
+               "type":"string"
+            },
+            "Type":{
+               "enum":[
+                  "DTC",
+                  "ECM"
+               ],
+               "type":"string"
+            },
+            "Latitude":{
+               "format":"double",
+               "type":"number"
+            },
+            "Longitude":{
+               "format":"double",
+               "type":"number"
+            }
+         }
+      },
+      "PushVehicleReportResponse":{
+         "type":"object",
+         "properties":{
+            "IsPayloadSaved":{
+               "type":"boolean"
+            },
+            "SystemMessages":{
+               "uniqueItems":false,
+               "type":"array",
+               "items":{
+                  "type":"string"
+               }
+            }
+         }
+      }
+   }
 }
-
