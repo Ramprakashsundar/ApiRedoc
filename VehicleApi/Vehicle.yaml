@@ -1,11 +1,34 @@
 swagger: '2.0'
 info:
-  version: v1
-  title: TOGS.API.Vehicle
+   title: TOGS Vehicle API
+   version: v1
   contact:
     name: Trimble Oil and Gas Inc.
-    url: 'http://www.geotracinternational.com/'
     email: support@geotracinternational.com
+description: |
+    # Overview
+ At Trimble Oil & Gas Services, you get so much more than a maximized ROI. You get everything that both you and your drivers need to make the journey as safe and efficient as possible. From customized GPS that maps all oil fields, to industry-leading safety products – we truly change the way you do business. 
+   
+    TOGS Vehicle API 1.0 provides operations like:
+    * **VehiceIdentifiers** - .
+    * **GetAssetOdometer**-
+    # Basepath URL
+    **Prod** -```https://togsapigateway.gogeotrac.com/api/NavistarDIF```
+    # Authorization
+    The service will be secured through API Auth Server. Thus requiring an
+    'Authorization' header in all requests. The value of the header can be
+    either picked up from APIAuthServer which will be an OAuth2 Bearer token. You have to send a valid
+    ```Access Token``` in the Authorization header, using the ```Bearer```
+    authentication scheme.
+tags:
+  - name: Vehicle APIs
+    description: |
+      
+consumes:
+  - application/json
+produces:
+  - application/json
+
 paths:
   /api/v1/VehiceIdentifiers/GetIdentifiers:
     post:
@@ -1203,3 +1226,4 @@ definitions:
         type: string
       ObservesDst:
         type: boolean
+
