@@ -1,0 +1,1154 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "v1",
+    "title": "TOGS.API.Customer",
+    "contact": {
+      "name": "Trimble Oil and Gas Inc.",
+      "url": "http://www.geotracinternational.com/",
+      "email": "support@geotracinternational.com"
+    }
+  },
+  "paths": {
+    "/api/v1/AssetGroup/GetAssetGroupIdentifiers": {
+      "post": {
+        "tags": [
+          "AssetGroup"
+        ],
+        "operationId": "GetAssetGroupIdentifiers",
+        "parameters": [
+          {
+            "name": "customerSystemIds",
+            "in": "header",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "uniqueItems": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAssetGroupIdentifiersRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAssetGroupIdentifiersRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAssetGroupIdentifiersRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAssetGroupIdentifiersRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAssetGroupIdentifiersRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAssetGroupIdentifiersRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAssetGroupIdentifiersRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAssetGroupIdentifiersResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAssetGroupIdentifiersResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/AssetGroup/GetFullAssetGroups": {
+      "post": {
+        "tags": [
+          "AssetGroup"
+        ],
+        "operationId": "GetFullAssetGroups",
+        "parameters": [
+          {
+            "name": "customerSystemIds",
+            "in": "header",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "uniqueItems": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFullAssetGroupsRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFullAssetGroupsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFullAssetGroupsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFullAssetGroupsRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFullAssetGroupsRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFullAssetGroupsRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFullAssetGroupsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFullAssetGroupsResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFullAssetGroupsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/CustomAssetGroup/GetCustomAssetGroupIdentifiers": {
+      "post": {
+        "tags": [
+          "CustomAssetGroup"
+        ],
+        "operationId": "GetCustomAssetGroupIdentifiers",
+        "parameters": [
+          {
+            "name": "customerSystemIds",
+            "in": "header",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "uniqueItems": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomAssetGroupIdentifiersRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomAssetGroupIdentifiersRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomAssetGroupIdentifiersRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomAssetGroupIdentifiersRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomAssetGroupIdentifiersRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomAssetGroupIdentifiersRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomAssetGroupIdentifiersRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomAssetGroupIdentifiersResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomAssetGroupIdentifiersResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Customer/GetCustomerId": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "GetCustomer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerResponce"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerResponce"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerResponce"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerResponce"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerResponce"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Customer/GetCustomers": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "GetCustomers",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerModel"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerModel"
+                  }
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/D2Link/GetHostInfoFromEsn/{esn}": {
+      "get": {
+        "tags": [
+          "D2Link"
+        ],
+        "operationId": "GetHostInfoFromEsn",
+        "parameters": [
+          {
+            "name": "esn",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHostInfoFromEsnResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHostInfoFromEsnResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHostInfoFromEsnResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHostInfoFromEsnResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/EquipmentDesignation/EquipmentDesignation": {
+      "get": {
+        "tags": [
+          "EquipmentDesignation"
+        ],
+        "operationId": "GetEquipmentDesignation",
+        "parameters": [
+          {
+            "name": "EquipmentSystemId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "EquipSN",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EquipmentDesignation"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EquipmentDesignation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Identifier/Identifiers": {
+      "post": {
+        "tags": [
+          "Identifier"
+        ],
+        "operationId": "GetCustomerIdentifiers",
+        "parameters": [
+          {
+            "name": "customerName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeDeleted",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerIdentifier"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerIdentifier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Identifier/Identifier": {
+      "post": {
+        "tags": [
+          "Identifier"
+        ],
+        "operationId": "GetCustomerIdentifier",
+        "parameters": [
+          {
+            "name": "customerSystemId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/InformationRecord/InformationRecord": {
+      "get": {
+        "tags": [
+          "InformationRecord"
+        ],
+        "operationId": "GetCustomerInformationRecord",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerInformationRecord"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerInformationRecord"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/SetupProfile/Profile": {
+      "get": {
+        "tags": [
+          "SetupProfile"
+        ],
+        "operationId": "GetCustomerSetupProfile",
+        "parameters": [
+          {
+            "name": "customerSystemId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/SetupProfile/Profiles": {
+      "get": {
+        "tags": [
+          "SetupProfile"
+        ],
+        "operationId": "GetCustomerSetupProfiles",
+        "parameters": [
+          {
+            "name": "customerName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeDeleted",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerSetupProfile"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "uniqueItems": false,
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerSetupProfile"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GetAssetGroupIdentifiersRequest": {
+        "type": "object",
+        "properties": {
+          "AssetGroupSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "GroupId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "OrganizationSystemId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        }
+      },
+      "GetAssetGroupIdentifiersResponse": {
+        "type": "object",
+        "properties": {
+          "AssetGroups": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetGroupIdentifier"
+            }
+          },
+          "ErrorMessages": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AssetGroupIdentifier": {
+        "type": "object",
+        "properties": {
+          "AssetGroupSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "GroupId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "GroupCode": {
+            "type": "string"
+          }
+        }
+      },
+      "GetFullAssetGroupsRequest": {
+        "type": "object",
+        "properties": {
+          "AssetGroupSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "GroupId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "OrganizationSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "TimeZoneId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CountryCode": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "ProvincialCode": {
+            "format": "int32",
+            "type": "integer"
+          }
+        }
+      },
+      "GetFullAssetGroupsResponse": {
+        "type": "object",
+        "properties": {
+          "AssetGroups": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetGroupModel"
+            }
+          },
+          "ErrorMessages": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AssetGroupModel": {
+        "type": "object",
+        "properties": {
+          "GroupId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CustomerId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CustomerSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "GroupCode": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "SalesPersonOrgId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "SalesPerson": {
+            "type": "string"
+          },
+          "SecuredItemId": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "ObservesDst": {
+            "type": "boolean"
+          },
+          "TimeZoneId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "SupportedByPeopleNet": {
+            "type": "boolean"
+          },
+          "DisplayName": {
+            "type": "string"
+          },
+          "CustOrgId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "OrganizationSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "Address1": {
+            "type": "string"
+          },
+          "Address2": {
+            "type": "string"
+          },
+          "Address3": {
+            "type": "string"
+          },
+          "City": {
+            "type": "string"
+          },
+          "ProvincialCode": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CountryCode": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "PostalCode": {
+            "type": "string"
+          },
+          "StartTime": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "AssetGroupSystemId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        }
+      },
+      "GetCustomAssetGroupIdentifiersRequest": {
+        "type": "object",
+        "properties": {
+          "CustomAssetGroupSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "SecuredItemId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetCustomAssetGroupIdentifiersResponse": {
+        "type": "object",
+        "properties": {
+          "CustomAssetGroups": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAssetGroupIdentifier"
+            }
+          },
+          "ErrorMessages": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CustomAssetGroupIdentifier": {
+        "type": "object",
+        "properties": {
+          "CustomAssetGroupSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "SecuredItemId": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetCustomerResponce": {
+        "type": "object",
+        "properties": {
+          "CustomerID": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CustomerName": {
+            "type": "string"
+          },
+          "Address1": {
+            "type": "string"
+          },
+          "City": {
+            "type": "string"
+          },
+          "State": {
+            "type": "string"
+          },
+          "Zipcode": {
+            "type": "string"
+          },
+          "PhoneNumber": {
+            "type": "string"
+          },
+          "ErrorMessages": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CustomerModel": {
+        "type": "object",
+        "properties": {
+          "CustomerID": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CustomerName": {
+            "type": "string"
+          },
+          "Address1": {
+            "type": "string"
+          },
+          "City": {
+            "type": "string"
+          },
+          "State": {
+            "type": "string"
+          },
+          "Zipcode": {
+            "type": "string"
+          },
+          "PhoneNumber": {
+            "type": "string"
+          },
+          "ErrorMessages": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GetHostInfoFromEsnResponse": {
+        "type": "object",
+        "properties": {
+          "D2LinkUrl": {
+            "type": "string"
+          },
+          "AccountId": {
+            "type": "string"
+          },
+          "AuthCode": {
+            "type": "string"
+          },
+          "AuthUrl": {
+            "type": "string"
+          },
+          "ErrorMessages": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "EquipmentDesignation": {
+        "type": "object",
+        "properties": {
+          "EquipSn": {
+            "type": "string"
+          },
+          "EquipmentSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "CustomerSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "CustomerId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CustomerName": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerIdentifier": {
+        "type": "object",
+        "properties": {
+          "CustomerSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "CustomerId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CustomerName": {
+            "type": "string"
+          },
+          "IsDeleted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": {
+          "type": "object"
+        }
+      },
+      "CustomerInformationRecord": {
+        "type": "object",
+        "properties": {
+          "CustomerSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "CustomerId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CustomerName": {
+            "type": "string"
+          },
+          "Address": {
+            "type": "string"
+          },
+          "Phone": {
+            "type": "string"
+          },
+          "Fax": {
+            "type": "string"
+          },
+          "DateOfRegistration": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "RegisteredBy": {
+            "type": "string"
+          },
+          "IsDeleted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CustomerSetupProfile": {
+        "type": "object",
+        "properties": {
+          "CustomerSystemId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "CustomerId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "CustomerName": {
+            "type": "string"
+          },
+          "CustomerFeatures": {
+            "uniqueItems": false,
+            "type": "array",
+            "items": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          "IsDeleted": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
