@@ -7,8 +7,27 @@
 			"name": "Trimble Oil and Gas Inc.",
 			"url": "http://www.geotracinternational.com/",
 			"email": "support@geotracinternational.com"
-		}
-	},
+		},
+ "description": "# Overview\n\n At Trimble Oil & Gas Services, you get so much more than a maximized ROI. You get everything that both you and your drivers need to make the journey as safe and efficient as possible. From customized GPS that maps all oil fields, to industry-leading safety products – we truly change the way you do business.\n\nTOGS Vehicle API 1.0 provides operations like:\n\n* **Device APIs** - Device API allow users to get the Device installed Vehicle\nwith device serial number.\n\n# Basepath URL\n\n**dev** - ```https://api-stg.trimble.com/t/trimble.com/toris-es-api-dev/1.0```\n\n\n**qa** - ```https://api-stg.trimble.com/t/trimble.com/toris-es-api-qa/1.0```\n\n\n**Stage** - ```https://api-stg.trimble.com/t/trimble.com/toris-es-api-stg/1.0```\n\n# Authorization\n\nThe service will be secured through API Cloud. Thus requiring an\n'Authorization' header in all requests. The value of the header can be\neither picked up from APICloud which will be an OAuth2 Bearer token or you\ncan use the Trimble Identity /token endpoint. You have to send a valid\n```Access Token``` in the Authorization header, using the ```Bearer```\nauthentication scheme.\n\nFormat: ```Bearer <access_token>```\n"
+  },
+  "host": "api-stg.trimble.com",
+  "basePath": "/t/trimble.com/toris-es-api-stg/1.0",
+  "schemes": [
+    "https"
+  ],
+  "tags": [
+    {
+      "name": "Device APIs",
+      "description": "Search APIs for Devices\n"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+
 	"paths": {
 		"/api/v1/VehiceIdentifiers/GetIdentifiers": {
 			"post": {
@@ -1708,3 +1727,4 @@
 		}
 	}
 }
+
