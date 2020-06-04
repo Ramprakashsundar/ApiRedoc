@@ -15,6 +15,7 @@
         "tags": [
           "VehicleReports"
         ],
+         "description": "The Vehicle Reports API allows Navistar enabled users to get the Vehicle information such as Vehicle Number, Vehicle number, VIN number. This API fetches data for multiple assets\n",
         "operationId": "GetVehicleReports",
         "consumes": [
           "application/json-patch+json",
@@ -144,6 +145,7 @@
         "tags": [
           "VehicleInformation"
         ],
+        "description": "The Vehicle Information API allows Navistar enabled users to get the Vehicle information such as Vehicle Number, Vehicle number, VIN number. This API fetches data for multiple assets\n",
         "operationId": "GetVehicleInformation",
         "consumes": [
           "application/json-patch+json",
@@ -201,6 +203,7 @@
         "tags": [
           "VehicleOdometer"
         ],
+        "description": "The Get Vehicle Odometer API allows the user to get the real-time odometer value of the vehicle based on Asset ID.\n",
         "operationId": "GetAssetOdometer",
         "consumes": [
           "application/json-patch+json",
@@ -267,6 +270,7 @@
         "tags": [
           "VehiceIdentifiers"
         ],
+        "description": "The Get Vehicle Identifier allows the user to get the Vehicle information based on Asset ID and Vehicle Unit Number..\n",
         "operationId": "GetVehicleIdentifiers",
         "consumes": [
           "application/json-patch+json",
@@ -1269,4 +1273,4 @@
       }
     }
   }
-} 
+}
