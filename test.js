@@ -1,3 +1,4 @@
+ alert( 'Hello, world!' );
 function show_alert()
 {
     alert("hihi");
