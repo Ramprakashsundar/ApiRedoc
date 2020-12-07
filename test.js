@@ -1,4 +1,5 @@
- alert( 'Hello, world!' );
+<script>
+alert( 'Hello, world!' );
 function show_alert()
 {
     alert("hihi");
@@ -11,3 +12,4 @@ $(document).ready(function() {
         show_alert();
     });
 });
+</script>
