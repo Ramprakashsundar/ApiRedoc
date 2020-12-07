@@ -1,4 +1,4 @@
-<script>
+
 alert( 'Hello, world!' );
 function show_alert()
 {
@@ -12,4 +12,3 @@ $(document).ready(function() {
         show_alert();
     });
 });
-</script>
